@@ -1,0 +1,6 @@
+{
+  "summary":  "Detailní architektonický a implementační plán pro produkční Android aplikaci Vertex Chat s AMOLED Material 3 designem, šifrovaným Vertex AI Service Account OAuth2 i přímým Gemini API režimem, izolovaným Virtuálním souborovým systémem (VFS), Function Calling orchestrací a spolehlivým běhěm dlouhých úloh přes WorkManager.",
+  "updatedAt":  "2026-10-24T19:38:11.465019711Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

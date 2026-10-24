@@ -1,0 +1,6 @@
+{
+  "name": "Vertex Chat",
+  "description": "Osobní nativní Android AI klient pro Google Cloud Vertex AI a Gemini s šifrovaným trezorem Service Accountu, izolovaným Virtuálním souborovým systémem (VFS), podporou Function Callingu a během dlouhých úloh na pozadí.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

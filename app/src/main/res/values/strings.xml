@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Vertex Chat</string>
+    <string name="nav_chats">Konverzace</string>
+    <string name="nav_vfs">Virtuální soubory (VFS)</string>
+    <string name="nav_settings">Autentizace a trezor</string>
+    <string name="new_chat">Nová konverzace</string>
+    <string name="thinking_indicator">Přemýšlím…</string>
+    <string name="thought_summary_title">Myšlenkový postup modelu</string>
+    <string name="send_message">Odeslat zprávu</string>
+    <string name="cancel_generation">Zastavit generování</string>
+    <string name="message_placeholder">Zadejte dotaz nebo požádejte o vytvoření souboru ve VFS…</string>
+    <string name="copied_to_clipboard">Zpráva zkopírována do schránky</string>
+    <string name="vfs_empty_title">Virtuální souborový systém je prázdný</string>
+    <string name="vfs_empty_subtitle">Požádejte AI o vygenerování kódu nebo vytvořte soubor či složku ručně tlačítkem níže.</string>
+    <string name="action_download">Stáhnout</string>
+    <string name="action_view">Zobrazit</string>
+    <string name="action_share">Sdílet</string>
+    <string name="action_edit">Upravit</string>
+    <string name="action_save">Uložit</string>
+    <string name="action_delete">Smazat</string>
+    <string name="action_rename">Přejmenovat</string>
+    <string name="action_cancel">Zrušit</string>
+    <string name="vault_locked">Trezor Service Accountu je uzamčen</string>
+    <string name="vault_unlocked">Trezor odemčen – OAuth2 připraveno</string>
+    <string name="notif_channel_name">AI Generování na pozadí</string>
+    <string name="notif_channel_desc">Průběh dlouhých AI úloh a operací nad Virtuálním souborovým systémem</string>
+</resources>

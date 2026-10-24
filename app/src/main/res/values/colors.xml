@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="amoled_black">#FF000000</color>
+    <color name="surface_elevated">#FF0E0E0E</color>
+    <color name="surface_card">#FF141414</color>
+    <color name="electric_blue">#FF3B82F6</color>
+    <color name="soft_violet">#FF8B5CF6</color>
+    <color name="text_primary">#FFE5E5E5</color>
+    <color name="text_secondary">#FF8A8A8A</color>
+</resources>
