@@ -30,7 +30,7 @@ import androidx.compose.material.icons.filled.CreateNewFolder
 import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.DriveFileMove
+import androidx.compose.material.icons.automirrored.filled.DriveFileMove
 import androidx.compose.material.icons.filled.ErrorOutline
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
@@ -218,7 +218,7 @@ fun ToolUseCard(
         "writeFile", "readFile" -> Icons.Default.Description
         "listFiles" -> Icons.Default.FolderOpen
         "deleteFile" -> Icons.Default.DeleteOutline
-        "moveFile", "renameFile" -> Icons.Default.DriveFileMove
+        "moveFile", "renameFile" -> Icons.AutoMirrored.Filled.DriveFileMove
         else -> Icons.Default.Description
     }
 

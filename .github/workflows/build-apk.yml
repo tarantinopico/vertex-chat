@@ -28,16 +28,33 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: 'cmdline-tools;latest platform-tools'
+
+      - name: Accept Android SDK Licenses
+        run: yes | sdkmanager --licenses || true
 
       - name: Setup Gradle with Cache
         uses: gradle/actions/setup-gradle@v4
         with:
+          gradle-version: '9.3.1'
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
 
-      - name: Ensure .env exists from .env.example
+      - name: Prepare .env and debug.keystore for CI
         run: |
           if [ ! -f .env ]; then
             cp .env.example .env
+          fi
+          if [ ! -f debug.keystore ]; then
+            keytool -genkeypair -v \
+              -keystore debug.keystore \
+              -storepass android \
+              -alias androiddebugkey \
+              -keypass android \
+              -keyalg RSA \
+              -keysize 2048 \
+              -validity 10000 \
+              -dname "CN=Android Debug,O=Android,C=US"
           fi
 
       - name: Run Unit & Robolectric Tests
@@ -66,15 +83,29 @@ jobs:
         run: |
           if [ -n "$KEYSTORE_BASE64" ]; then
             echo "$KEYSTORE_BASE64" | base64 --decode > "${GITHUB_WORKSPACE}/release-keystore.jks"
+            KEYSTORE_PATH="${GITHUB_WORKSPACE}/release-keystore.jks" \
+            STORE_PASSWORD="${KEYSTORE_PASSWORD}" \
+            KEY_PASSWORD="${KEY_PASSWORD}" \
             gradle :app:assembleRelease \
               -Pandroid.injected.signing.store.file="${GITHUB_WORKSPACE}/release-keystore.jks" \
               -Pandroid.injected.signing.store.password="${KEYSTORE_PASSWORD}" \
               -Pandroid.injected.signing.key.alias="${KEY_ALIAS}" \
               -Pandroid.injected.signing.key.password="${KEY_PASSWORD}"
           else
-            echo "KEYSTORE_BASE64 secret not configured; signing release APK with debug keystore fallback for artifact generation."
-            cp debug.keystore "${GITHUB_WORKSPACE}/my-upload-key.jks" || true
-            STORE_PASSWORD=android KEY_PASSWORD=android gradle :app:assembleRelease || true
+            echo "KEYSTORE_BASE64 secret not configured; signing release APK with generated fallback keystore."
+            keytool -genkeypair -v \
+              -keystore "${GITHUB_WORKSPACE}/my-upload-key.jks" \
+              -storepass android \
+              -alias upload \
+              -keypass android \
+              -keyalg RSA \
+              -keysize 2048 \
+              -validity 10000 \
+              -dname "CN=Vertex Chat Release,O=VertexChat,C=CZ"
+            KEYSTORE_PATH="${GITHUB_WORKSPACE}/my-upload-key.jks" \
+            STORE_PASSWORD="android" \
+            KEY_PASSWORD="android" \
+            gradle :app:assembleRelease
           fi
 
       - name: Upload Release APK Artifact
